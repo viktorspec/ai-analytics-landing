@@ -108,12 +108,13 @@ body {
     color: var(--neon-cyan);
 }
 .hero {
-    height: 80vh;
+    min-height: 100vh; /* Занимает весь экран */
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 80px 20px 0; /* 80px — это высота вашей шапки. Теперь текст не зайдет под неё */
+    /* Увеличиваем отступ сверху до 120px, чтобы текст гарантированно был ниже кнопки */
+    padding: 120px 20px 60px; 
 }
 
 .hero-content {
@@ -272,10 +273,15 @@ body {
 /* Настройки для мобильных устройств (ширина экрана до 768px) */
 @media (max-width: 768px) {
     .header {
-        position: fixed; /* Оставляем закрепленной */
-        height: auto;    /* Убираем фиксированную высоту, чтобы ничего не обрезалось */
-        padding: 15px 20px;
-        display: block;  /* Позволяем внутренним элементам занимать место */
+        /* На мобильных Armor 18 шапка становится выше из-за колонки контента */
+        height: auto; 
+    }
+    .hero {
+        /* Увеличиваем зазор до 160px для мобильных, чтобы кнопка AI не перекрывала текст */
+        padding-top: 160px !important; 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Прижимаем контент к верху с учетом padding */
     }
 
     .nav {
@@ -300,14 +306,13 @@ body {
         font-size: 28px;
         padding: 0 10px;
     }
-
    .hero-title {
-    /* clamp(минимум, предпочтительно, максимум) */
-    font-size: clamp(30px, 5vw + 10px, 64px);
-    margin-bottom: 20px;
-    line-height: 1.1;
-    white-space: normal; /* Всегда разрешаем перенос */
-}
+        /* Уменьшаем размер, чтобы слова не дробились */
+        font-size: 26px !important; 
+        line-height: 1.2 !important;
+        white-space: normal !important;
+    }
+  
     .hero-btns {
         flex-direction: column;
         width: 100%;
