@@ -113,7 +113,7 @@ body {
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 0 20px;
+    padding: 80px 20px 0; /* 80px — это высота вашей шапки. Теперь текст не зайдет под неё */
 }
 
 .hero-content {
