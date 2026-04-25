@@ -1,0 +1,390 @@
+/* Полный сброс и настройка модели расчета размеров */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Чтобы padding не раздувал ширину блоков */
+}
+
+html {
+    scroll-behavior: smooth; /* Для плавного скролла к разделам */
+}
+
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased; /* Чтобы шрифты на Windows 11 выглядели четче */
+}
+
+img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%; /* Чтобы картинки не вылезали за пределы контейнеров */
+}
+
+input, button, textarea, select {
+    font: inherit; /* Чтобы элементы форм наследовали ваш шрифт */
+}
+
+a {
+    text-decoration: none; /* Убираем стандартное подчеркивание ссылок */
+    color: inherit;
+}
+
+ul, ol {
+    list-style: none; /* Убираем точки у списков */
+}
+:root {
+    --bg-dark: #050505;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --neon-cyan: #00f2ff;
+    --neon-purple: #bc13fe;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
+    --font-family: 'Inter', sans-serif; /* Популярный шрифт для IT */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: var(--font-family);
+    margin: 0;
+    overflow-x: hidden;
+}
+.gradient-text {
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+    -webkit-background-clip: text; /* Для Chrome, Safari, Edge */
+    background-clip: text;         /* Стандартное свойство (уберет предупреждение) */
+    -webkit-text-fill-color: transparent;
+}
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 40px; /* Убираем вертикальный паддинг, будем центровать через высоту */
+    height: 80px;    /* Четкая высота шапки */
+    display: flex;
+    align-items: center; /* Центрирует nav по вертикали */
+}
+
+.nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 40px;
+}
+
+/* Фикс для навигационных ссылок, чтобы они тоже были четко по центру */
+.nav-links {
+    display: flex;
+    gap: 35px;
+    align-items: center;
+    margin: 0 auto; /* Центрирует ссылки между логотипом и кнопкой */
+}
+
+.nav-links a {
+    font-size: 15px;
+    color: var(--text-dim);
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--neon-cyan);
+    text-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--neon-cyan);
+}
+.hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 20px;
+}
+
+.hero-content {
+    text-align: center;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 64px;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-dim);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn-main {
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+    border: none;
+    padding: 15px 30px;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--neon-cyan);
+    padding: 15px 30px;
+    color: var(--neon-cyan);
+    border-radius: 5px;
+    margin-left: 15px;
+    cursor: pointer;
+}
+.btn-main, .btn-outline {
+    transition: all 0.3s ease; /* Плавный переход */
+}
+
+.btn-main:hover {
+    transform: translateY(-2px); /* Легкий подъем при наведении */
+    box-shadow: 0 0 25px var(--neon-cyan); /* Усиление свечения */
+}
+
+.btn-outline:hover {
+    background: rgba(0, 242, 255, 0.1);
+    box-shadow: 0 0 15px var(--neon-cyan);
+}
+
+/* Главная активированная кнопка в шапке */
+.btn-primary {
+    background: linear-gradient(90deg, var(--neon-cyan), var(--neon-purple));
+    color: #fff;
+    border: none;
+    padding: 6px 16px; 
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.3);
+    margin-left: 0; /* Убираем margin-left: auto для центровки */
+    
+    /* Обязательно для анимации! */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    white-space: nowrap;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 25px var(--neon-cyan);
+    transform: translateY(-2px) scale(1.02); /* Кнопка приподнимается и чуть растет */
+    filter: brightness(1.1); /* Становится ярче */
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.98); /* Эффект нажатия */
+}
+
+.hero-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    height: 400px;
+    background: var(--neon-purple);
+    filter: blur(150px); /* Сильное размытие создает эффект тумана */
+    opacity: 0.2; /* Делаем эффект очень мягким */
+    z-index: 1;
+    pointer-events: none; /* Чтобы слой не мешал кликать по кнопкам */
+}
+
+/* CSS Grid для расположения карточек и добавим эффект «стекла» (glassmorphism) */
+.features {
+    padding: 100px 20px;
+    background: var(--bg-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 42px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+/* Сетка карточек */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Автоматическая колонка */
+    gap: 30px; /* Расстояние между карточками */
+}
+
+/* Стили карточки */
+.feature-card {
+    background: var(--card-bg); /* Ваша переменная из :root */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+    text-align: left;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--neon-cyan);
+    box-shadow: 0 10px 30px rgba(0, 242, 255, 0.1);
+}
+
+.feature-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.feature-name {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: var(--text-main);
+}
+
+.feature-text {
+    color: var(--text-dim);
+    line-height: 1.6;
+}
+/* Настройки для мобильных устройств (ширина экрана до 768px) */
+@media (max-width: 768px) {
+    .header {
+        position: fixed; /* Оставляем закрепленной */
+        height: auto;    /* Убираем фиксированную высоту, чтобы ничего не обрезалось */
+        padding: 15px 20px;
+        display: block;  /* Позволяем внутренним элементам занимать место */
+    }
+
+    .nav {
+        flex-direction: column; /* Выстраиваем лого, ссылки и кнопку в колонку */
+        gap: 15px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .nav-links {
+        gap: 15px;
+        margin: 5px 0;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    /* Уменьшаем гигантский заголовок для мобильных */
+    .hero-title {
+        font-size: 28px;
+        padding: 0 10px;
+    }
+
+    .hero-subtitle {
+        font-size: 14px;
+        padding: 0 20px;
+    }
+
+    .hero-btns {
+        flex-direction: column;
+        width: 100%;
+        padding: 0 40px;
+    }
+
+    .btn-main, .btn-outline {
+        width: 100%;
+        margin: 5px 0;
+    }
+}
+.footer {
+    padding: 80px 0 30px;
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Для адаптивности на мобильных */
+    gap: 40px;
+    padding: 0 40px;
+}
+
+.footer-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-description {
+    margin-top: 20px;
+    color: var(--text-dim);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.footer-links h4, .footer-social h4 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: var(--text-main);
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: var(--text-dim);
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--neon-cyan);
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    font-size: 24px;
+}
+
+.footer-bottom {
+    margin-top: 60px;
+    padding-top: 20px;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-dim);
+    font-size: 12px;
+}
+
+/* Адаптивность для футера */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
