@@ -301,11 +301,13 @@ body {
         padding: 0 10px;
     }
 
-    .hero-subtitle {
-        font-size: 14px;
-        padding: 0 20px;
-    }
-
+   .hero-title {
+    /* clamp(минимум, предпочтительно, максимум) */
+    font-size: clamp(30px, 5vw + 10px, 64px);
+    margin-bottom: 20px;
+    line-height: 1.1;
+    white-space: normal; /* Всегда разрешаем перенос */
+}
     .hero-btns {
         flex-direction: column;
         width: 100%;
